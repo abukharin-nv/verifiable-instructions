@@ -60,3 +60,18 @@ Generated instructions follow the IFEval format:
 }
 ```
 
+## Citation
+
+This package is based on the instruction following constraints from Allen AI's open-instruct project. If you use this package, please cite:
+
+```bibtex
+@article{lambert2024tulu3,
+  title = {Tülu 3: Pushing Frontiers in Open Language Model Post-Training},
+  author = {
+    Nathan Lambert and Jacob Morrison and Valentina Pyatkin and Shengyi Huang and Hamish Ivison and Faeze Brahman and Lester James V. Miranda and Alisa Liu and Nouha Dziri and Shane Lyu and Yuling Gu and Saumya Malik and Victoria Graf and Jena D. Hwang and Jiangjiang Yang and Ronan Le Bras and Oyvind Tafjord and Chris Wilhelm and Luca Soldaini and Noah A. Smith and Yizhong Wang and Pradeep Dasigi and Hannaneh Hajishirzi
+  },
+  year = {2024},
+  email = {tulu@allenai.org}
+}
+```
+
