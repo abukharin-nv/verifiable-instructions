@@ -52,7 +52,8 @@ class TrainingInstructionSynthesizer:
                     
                     dataset.append({
                         'instruction_id': [instr_type],
-                        'kwargs': [kwargs]
+                        'kwargs': [kwargs],
+                        'description': description
                     })
                 except Exception as e:
                     # Some instructions may require specific parameters
@@ -93,13 +94,17 @@ class TrainingInstructionSynthesizer:
             # Create instruction instances and extract kwargs
             instruction_instances = []
             kwargs_list = []
+            descriptions = []
+            successful_instruction_ids = []
             
             for instr_type in selected_instructions:
                 try:
                     instr_class = self.instruction_classes[instr_type]
                     instruction = instr_class(f"compound_{i}_{instr_type}")
-                    instruction.build_description()
+                    description = instruction.build_description()
                     instruction_instances.append(instruction)
+                    descriptions.append(description)
+                    successful_instruction_ids.append(instr_type)
                     
                     # Extract kwargs
                     try:
@@ -113,8 +118,9 @@ class TrainingInstructionSynthesizer:
             
             if instruction_instances:  # Only add if we successfully created instructions
                 dataset.append({
-                    'instruction_id': selected_instructions[:len(instruction_instances)],
-                    'kwargs': kwargs_list
+                    'instruction_id': successful_instruction_ids,
+                    'kwargs': kwargs_list,
+                    'descriptions': descriptions
                 })
         
         return dataset
